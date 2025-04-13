@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: desafio-votacao
+  datasource:
+    url: jdbc:postgresql://172.20.217.157:5432/votacaodb
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+logging:
+  level:
+    root: info
+    org.springframework.web: debug
+    org.hibernate: info
+spring-doc:
+  paths-to-match: /api/v1/**
+  swagger-ui:
+    use-root-path: true
