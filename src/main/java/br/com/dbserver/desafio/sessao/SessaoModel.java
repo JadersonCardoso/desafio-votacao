@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -22,6 +23,13 @@ public class SessaoModel {
     private Instant fim;
     @OneToOne
     private PautaModel pauta;
+    @Column(name = "data_abertura")
+    private LocalDateTime dataAbertura;
+
+    @PrePersist
+    public void prePersist() {
+        this.dataAbertura = LocalDateTime.now();
+    }
 
 
 }
