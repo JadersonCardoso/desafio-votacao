@@ -2,6 +2,7 @@ package br.com.dbserver.desafio.pauta;
 
 import br.com.dbserver.desafio.mapper.MockPauta;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -34,6 +35,7 @@ class PautaServiceTest {
     }
 
     @Test
+    @DisplayName("Deve salvar uma pauta com sucesso")
     void save() {
         PautaModel pauta = this.input.mockEntity();
 

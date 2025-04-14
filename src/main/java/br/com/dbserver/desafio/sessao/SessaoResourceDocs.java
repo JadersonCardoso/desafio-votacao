@@ -20,7 +20,7 @@ import java.util.UUID;
 @Tag(name ="Sessoes", description = "Endpoints para gerenciamento de sessões")
 public interface SessaoResourceDocs {
 
-    @PostMapping("/abrir")
+    @PostMapping("/abertura")
     @Operation(summary = "Abre uma nova sessão",
             description = "Abre uma nova sessão",
             tags = "Sessoes",
@@ -35,7 +35,8 @@ public interface SessaoResourceDocs {
 
             }
     )
-    ResponseEntity<SessaoDTO> abrirSessao(@RequestParam UUID pautaId, @RequestParam(required = false) Long duracao);
+    ResponseEntity<SessaoDTO> abrirSessao(@RequestParam(value = "pautaId") UUID pautaId,
+                                          @RequestParam(value = "duracao",required = false) Long duracao);
     @GetMapping
     @Operation(summary = "Listas todas as Sessões", description = "Lista todas as sessãoes", tags = "Sessoes",
     responses = {

@@ -32,6 +32,13 @@ public class MockSessao {
         return sessaoModel;
     }
 
+    public SessaoDTO mockDtoRequest() {
+        PautaDTO pautaDTO = new PautaDTO(UUID.fromString("1e83546-a98a-44b5-a3eb-ce7c80309c05"),"Pauta Teste");
+        return new SessaoDTO(null,
+                Instant.now(), Instant.now().plus(Duration.ofSeconds(60))
+                ,pautaDTO);
+    }
+
     public List<SessaoModel> mockEntityList() {
         List<SessaoModel> sessoes = new ArrayList<>();
         for (int i = 0; i < 14; i++) {
