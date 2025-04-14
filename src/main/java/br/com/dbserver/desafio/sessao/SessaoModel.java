@@ -12,7 +12,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "TB_SESSAP")
+@Table(name = "TB_SESSAO")
 public class SessaoModel {
 
     @Id
@@ -22,6 +22,7 @@ public class SessaoModel {
     private Instant inicio;
     private Instant fim;
     @OneToOne
+    @JoinColumn(name = "pauta_id")
     private PautaModel pauta;
     @Column(name = "data_abertura")
     private LocalDateTime dataAbertura;

@@ -21,7 +21,7 @@ public class SessaoService {
         this.pautaRepository = pautaRepository;
         this.mapper = mapper;
     }
-    public SessaoDTO executar(UUID pautaId, Long duracao) {
+    public SessaoDTO executarAberturaSessao(UUID pautaId, Long duracao) {
         var pauta = this.pautaRepository.findById(pautaId).orElseThrow(
                 () -> new FileNotFoundException("Nâo existe Pauta com o ID informado"));
         Instant inicio = Instant.now();

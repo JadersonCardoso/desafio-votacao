@@ -18,7 +18,7 @@ public class SessaoResource implements SessaoResourceDocs {
     }
     @Override
     public ResponseEntity<SessaoDTO> abrirSessao(UUID pautaId, Long duracao) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(this.service.executar(pautaId, duracao));
+        return ResponseEntity.status(HttpStatus.CREATED).body(this.service.executarAberturaSessao(pautaId, duracao));
     }
 
     @Override
