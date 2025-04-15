@@ -4,12 +4,12 @@ import br.com.dbserver.desafio.exception.BusinessException;
 import br.com.dbserver.desafio.exception.FileNotFoundException;
 import br.com.dbserver.desafio.mapper.MockSessao;
 import br.com.dbserver.desafio.mapper.MockVoto;
-import br.com.dbserver.desafio.pauta.PautaModel;
 import br.com.dbserver.desafio.pauta.PautaRepository;
 import br.com.dbserver.desafio.sessao.SessaoModel;
 import br.com.dbserver.desafio.sessao.SessaoRepository;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.function.Executable;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -67,9 +67,9 @@ class VotoServiceTest {
     @DisplayName("Deve gerar erro se não existe pauta cadastrada.")
     void inserirVotoPautNotFoundExceptionTest() {
 
-        Exception exception = assertThrows(FileNotFoundException.class, () -> {
-            this.votoService.inserirVoto(this.input.mockRequest());
-        });
+        Executable chamada = () -> this.votoService.inserirVoto(this.input.mockRequest());
+        Exception exception = assertThrows(FileNotFoundException.class, chamada);
+
         String mensagemEsperada = "Não foi encontrada pauta com o ID informado.";
         String mensagemAtual = exception.getMessage();
 
@@ -84,9 +84,9 @@ class VotoServiceTest {
         when(this.pautaRepository.findById(voto.getPauta().getId())).thenReturn(Optional.of(voto.getPauta()));
         when(this.votoRepository.existsByPautaIdAndAssociadoId(voto.getPauta().getId(), voto.getAssociadoId())).thenReturn(true);
 
-        Exception exception = assertThrows(BusinessException.class, () -> {
-            this.votoService.inserirVoto(this.input.mockRequest());
-        });
+        Executable chamada = () -> this.votoService.inserirVoto(this.input.mockRequest());
+        Exception exception = assertThrows(BusinessException.class, chamada);
+
         String mensagemEsperada = "Já existe voto do associado pata esta pauta.";
         String mensagemAtual = exception.getMessage();
 
@@ -103,9 +103,9 @@ class VotoServiceTest {
         when(this.pautaRepository.findById(voto.getPauta().getId())).thenReturn(Optional.of(voto.getPauta()));
         when(this.votoRepository.existsByPautaIdAndAssociadoId(voto.getPauta().getId(), voto.getAssociadoId())).thenReturn(false);
 
-        Exception exception = assertThrows(FileNotFoundException.class, () -> {
-            this.votoService.inserirVoto(this.input.mockRequest());
-        });
+        Executable chamada = () -> this.votoService.inserirVoto(this.input.mockRequest());
+        Exception exception = assertThrows(FileNotFoundException.class, chamada);
+
         String mensagemEsperada = "Não foi encontrada sessão para esta pauta.";
         String mensagemAtual = exception.getMessage();
 
@@ -128,9 +128,8 @@ class VotoServiceTest {
 
         when(this.sessaoRepository.findByPautaId(voto.getPauta().getId())).thenReturn(Optional.of(sessaoFechada));
 
-        Exception exception = assertThrows(BusinessException.class, () -> {
-            this.votoService.inserirVoto(this.input.mockRequest());
-        });
+        Executable chamada = () -> this.votoService.inserirVoto(this.input.mockRequest());
+        Exception exception = assertThrows(BusinessException.class, chamada);
 
         String mensagemEsperada = "A sessão de votação não está aberta no momento.";
         String mensagemAtual = exception.getMessage();
