@@ -10,7 +10,7 @@ public class MockVoto {
 
     public VotoRequestDTO mockRequest() {
         return new VotoRequestDTO(UUID.fromString("4a390eeb-2512-4813-b55a-4b57fa21efdc"),
-                UUID.fromString("b25ddb9a-f9bc-4b5b-afa0-f97c6229d5c6"),
+                UUID.fromString("0594e80e-bd42-439f-8a50-482cfee1f696"),
                 "SIM");
     }
 
@@ -18,7 +18,7 @@ public class MockVoto {
         MockPauta pauta = new MockPauta();
         VotoModel voto = new VotoModel();
         voto.setPauta(pauta.mockEntity());
-        voto.setAssociadoId(UUID.fromString("b25ddb9a-f9bc-4b5b-afa0-f97c6229d5c6"));
+        voto.setAssociadoId(UUID.fromString("0594e80e-bd42-439f-8a50-482cfee1f696"));
         voto.setValor(VotoValor.SIM);
         return voto;
     }

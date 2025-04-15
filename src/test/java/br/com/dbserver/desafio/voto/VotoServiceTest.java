@@ -1,9 +1,11 @@
 package br.com.dbserver.desafio.voto;
 
+import br.com.dbserver.desafio.associado.AssociadoModel;
 import br.com.dbserver.desafio.associado.AssociadoRepository;
 import br.com.dbserver.desafio.client.ValidadorCpfClient;
 import br.com.dbserver.desafio.exception.BusinessException;
 import br.com.dbserver.desafio.exception.FileNotFoundException;
+import br.com.dbserver.desafio.mapper.MockAssociado;
 import br.com.dbserver.desafio.mapper.MockSessao;
 import br.com.dbserver.desafio.mapper.MockVoto;
 import br.com.dbserver.desafio.pauta.PautaRepository;
@@ -32,6 +34,7 @@ class VotoServiceTest {
 
     private MockVoto input;
     private MockSessao inputSessao;
+    private MockAssociado inputAssociado;
     @Mock
     private VotoRepository votoRepository;
     @Mock
@@ -50,6 +53,7 @@ class VotoServiceTest {
                 associadoRepository, validadorCpfClient);
         this.input = new MockVoto();
         this.inputSessao = new MockSessao();
+        this.inputAssociado = new MockAssociado();
     }
 
     @Test
@@ -57,7 +61,10 @@ class VotoServiceTest {
     @DisplayName("Deve salvar um voto com sucesso")
     void inserirVotoTest() {
         VotoModel voto = this.input.mockEntity();
+        AssociadoModel associadoModel = this.inputAssociado.mockEntity();
 
+        when(this.associadoRepository.findById(associadoModel.getId())).thenReturn(Optional.of(associadoModel));
+        when(this.validadorCpfClient.validarCpf(associadoModel.getCpf())).thenReturn(true);
         when(this.pautaRepository.findById(voto.getPauta().getId())).thenReturn(Optional.of(voto.getPauta()));
         when(this.votoRepository.existsByPautaIdAndAssociadoId(voto.getPauta().getId(), voto.getAssociadoId())).thenReturn(false);
         when(this.sessaoRepository.findByPautaId(voto.getPauta().getId())).thenReturn(Optional.of(this.inputSessao.mockEntity()));

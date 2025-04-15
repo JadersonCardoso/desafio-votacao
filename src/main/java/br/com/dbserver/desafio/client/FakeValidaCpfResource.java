@@ -25,6 +25,7 @@ public class FakeValidaCpfResource {
         }
         boolean podeVotar = change% 2 == 0;
         Map<String, String> response = Map.of("status", podeVotar ? "ABLE_TO_VOTE" : "UNABLE_TO_VOTE");
+
         return ResponseEntity.ok(response);
     }
 }

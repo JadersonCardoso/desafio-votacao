@@ -35,6 +35,7 @@ public class VotoService {
         log.info("Verificando se associado existe no cadastro");
         var associado = this.associadoRepository.findById(voto.associadoId())
                 .orElseThrow(() -> new FileNotFoundException("Não foi encontrado associado com ID informado."));
+
         log.info("Validando CPF do associado.");
         if (!validadorCpfClient.validarCpf(associado.getCpf())) {
             throw new BusinessException("CPF inválido ou não habilitado para votar");
