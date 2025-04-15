@@ -26,8 +26,8 @@ A aplicação será acessível via:
 docker run --name votacao-db -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=votacaodb -p 5432:5432 -d postgres
 ``` 
 2. Faça o clone do projeto em: 
-   https://github.com/JadersonCardoso/desafio-votacao.git 
-3. Dentro da pasta do Compile e Execute
+   - https://github.com/JadersonCardoso/desafio-votacao.git 
+3. Dentro da pasta do projeto Compile e Execute
 ```bash
 mvn spring-boot:run
 ``` 
