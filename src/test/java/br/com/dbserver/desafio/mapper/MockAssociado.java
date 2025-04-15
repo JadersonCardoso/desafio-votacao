@@ -27,7 +27,7 @@ public class MockAssociado {
 
     public AssociadoModel mockEntity() {
         AssociadoModel model = new AssociadoModel();
-        model.setId(UUID.randomUUID());
+        model.setId(UUID.fromString("0594e80e-bd42-439f-8a50-482cfee1f696"));
         model.setCpf("10584910088");
         return model;
     }
