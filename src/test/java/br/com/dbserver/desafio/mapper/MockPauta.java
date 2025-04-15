@@ -3,6 +3,8 @@ package br.com.dbserver.desafio.mapper;
 import br.com.dbserver.desafio.pauta.PautaDTO;
 import br.com.dbserver.desafio.pauta.PautaModel;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class MockPauta {
@@ -18,5 +20,13 @@ public class MockPauta {
 
     public PautaDTO mockDtoRequest() {
         return new PautaDTO(null, "Pauta Teste");
+    }
+
+    public List<PautaModel> mockEntityList() {
+        List<PautaModel> pautas = new ArrayList<>();
+        for (int i = 0; i < 14; i++) {
+            pautas.add(mockEntity());
+        }
+        return pautas;
     }
 }

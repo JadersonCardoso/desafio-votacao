@@ -8,4 +8,5 @@ import java.util.UUID;
 public interface SessaoRepository extends JpaRepository<SessaoModel, UUID> {
 
     Optional<SessaoModel> findByPautaId(UUID pautaId);
+    boolean existsByPautaId(UUID pautaId);
 }
