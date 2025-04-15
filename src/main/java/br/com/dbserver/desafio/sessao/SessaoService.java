@@ -2,6 +2,7 @@ package br.com.dbserver.desafio.sessao;
 
 import br.com.dbserver.desafio.exception.FileNotFoundException;
 import br.com.dbserver.desafio.pauta.PautaRepository;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import java.time.Instant;
 import java.util.UUID;
 
 @Service
+@Log4j2
 public class SessaoService {
 
     private final SessaoRepository sessaoRepository;
@@ -22,11 +24,12 @@ public class SessaoService {
         this.mapper = mapper;
     }
     public SessaoDTO executarAberturaSessao(UUID pautaId, Long duracao) {
+        log.info("Iniciando a abertura de sessão para a pautaId {}", pautaId);
         var pauta = this.pautaRepository.findById(pautaId).orElseThrow(
                 () -> new FileNotFoundException("Nâo existe Pauta com o ID informado"));
         Instant inicio = Instant.now();
-        Instant fim = inicio.plus(Duration.ofSeconds(
-                duracao != null ? duracao : 60
+        Instant fim = inicio.plus(Duration.ofMinutes(
+                duracao != null ? duracao : 1
         ));
         SessaoModel sessao = new SessaoModel();
         sessao.setPauta(pauta);

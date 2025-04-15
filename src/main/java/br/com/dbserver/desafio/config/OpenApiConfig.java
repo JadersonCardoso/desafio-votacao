@@ -13,9 +13,9 @@ public class OpenApiConfig {
     OpenAPI customOpenApi() {
         return new OpenAPI()
                 .info(new Info()
-                .title("API para cadastro de paustas.")
+                .title("API para gestão de votos em paustas.")
                     .version("v1")
-                    .description("API para cadastro de paustas.")
+                    .description("API para gestão de votos em paustas.")
                 .termsOfService("http://localhost:8080")
                     .license(new License()
                             .name("Apache 2.0")
