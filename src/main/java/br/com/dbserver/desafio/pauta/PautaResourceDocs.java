@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -48,6 +49,6 @@ public interface PautaResourceDocs {
                     @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
                     @ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content)
             } )
-    ResponseEntity<Page<PautaDTO>> findAll(@PageableDefault(page = 0, size = 10,sort = "titulo", direction = Sort.Direction.ASC) Pageable pageable);
+    ResponseEntity<Page<PautaDTO>> findAll(@ParameterObject  @PageableDefault(page = 0, size = 10,sort = "titulo", direction = Sort.Direction.ASC) Pageable pageable);
 
 }

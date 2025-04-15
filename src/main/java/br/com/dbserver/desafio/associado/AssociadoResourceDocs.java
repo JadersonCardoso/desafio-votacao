@@ -35,5 +35,5 @@ public interface AssociadoResourceDocs {
                     @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
                     @ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content)
             })
-    ResponseEntity<Page<AssociadoDTO>> findAll(@PageableDefault(page = 0, size = 10, sort ="id", direction = Sort.Direction.ASC)Pageable pageable);
+    ResponseEntity<Page<AssociadoDTO>> findAll(@ParameterObject @PageableDefault(page = 0, size = 10, sort ="id", direction = Sort.Direction.ASC)Pageable pageable);
 }
