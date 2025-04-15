@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -50,7 +51,7 @@ public interface SessaoResourceDocs {
             @ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content)
 
     })
-    ResponseEntity<Page<SessaoDTO>> findAll(@PageableDefault(page = 0, size = 10)Pageable pageable);
+    ResponseEntity<Page<SessaoDTO>> findAll(@ParameterObject @PageableDefault(page = 0, size = 10)Pageable pageable);
 
 
 }
