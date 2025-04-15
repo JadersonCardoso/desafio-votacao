@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@Tag(name = "Votos", description = "Endpoints para gerancimento de votos")
+@Tag(name = "Votos", description = "Endpoints para gerancimento de Votos")
 public interface VotoResourceDocs {
     @PostMapping(value = "/votar", consumes = {MediaType.APPLICATION_JSON_VALUE})
     @Operation(summary = "Cria voto de um associado para uma pauta",

@@ -1,5 +1,7 @@
 package br.com.dbserver.desafio.voto;
 
+import br.com.dbserver.desafio.associado.AssociadoRepository;
+import br.com.dbserver.desafio.client.ValidadorCpfClient;
 import br.com.dbserver.desafio.exception.BusinessException;
 import br.com.dbserver.desafio.exception.FileNotFoundException;
 import br.com.dbserver.desafio.mapper.MockSessao;
@@ -36,11 +38,16 @@ class VotoServiceTest {
     private PautaRepository pautaRepository;
     @Mock
     private SessaoRepository sessaoRepository;
+    @Mock
+    private AssociadoRepository associadoRepository;
+    @Mock
+    private ValidadorCpfClient validadorCpfClient;
 
     private VotoService votoService;
     @BeforeEach
     void setup() {
-        this.votoService = new VotoService(votoRepository, pautaRepository, sessaoRepository);
+        this.votoService = new VotoService(votoRepository, pautaRepository, sessaoRepository,
+                associadoRepository, validadorCpfClient);
         this.input = new MockVoto();
         this.inputSessao = new MockSessao();
     }

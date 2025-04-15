@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.UUID;
 
-@Tag(name = "Resultados", description = "Endpoints para gerenciamento de resultados dos cvotos")
+@Tag(name = "Resultados", description = "Endpoints para gerenciamento de resultados dos Votos")
 public interface ResultadoVotacaoResourceDocs {
 
     @GetMapping("/{pautaId}")

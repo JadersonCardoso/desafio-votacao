@@ -1,5 +1,7 @@
 package br.com.dbserver.desafio.voto;
 
+import br.com.dbserver.desafio.associado.AssociadoRepository;
+import br.com.dbserver.desafio.client.ValidadorCpfClient;
 import br.com.dbserver.desafio.exception.BusinessException;
 import br.com.dbserver.desafio.exception.FileNotFoundException;
 import br.com.dbserver.desafio.pauta.PautaModel;
@@ -18,13 +20,26 @@ public class VotoService {
     private final VotoRepository votoRepository;
     private final PautaRepository pautaRepository;
     private final SessaoRepository sessaoRepository;
-    public VotoService(VotoRepository votoRepository, PautaRepository pautaRepository, SessaoRepository sessaoRepository) {
+    private final AssociadoRepository associadoRepository;
+    private final ValidadorCpfClient validadorCpfClient;
+    public VotoService(VotoRepository votoRepository, PautaRepository pautaRepository, SessaoRepository sessaoRepository, AssociadoRepository associadoRepository, ValidadorCpfClient validadorCpfClient) {
         this.votoRepository = votoRepository;
         this.pautaRepository = pautaRepository;
         this.sessaoRepository = sessaoRepository;
+        this.associadoRepository = associadoRepository;
+        this.validadorCpfClient = validadorCpfClient;
     }
 
     public void inserirVoto(VotoRequestDTO voto) {
+
+        log.info("Verificando se associado existe no cadastro");
+        var associado = this.associadoRepository.findById(voto.associadoId())
+                .orElseThrow(() -> new FileNotFoundException("Não foi encontrado associado com ID informado."));
+        log.info("Validando CPF do associado.");
+        if (!validadorCpfClient.validarCpf(associado.getCpf())) {
+            throw new BusinessException("CPF inválido ou não habilitado para votar");
+        }
+
         log.info("verificando se existe a pautaID {} infomado.", voto.pautaId());
         PautaModel pauta = this.pautaRepository.findById(voto.pautaId())
                 .orElseThrow(() -> new FileNotFoundException("Não foi encontrada pauta com o ID informado."));

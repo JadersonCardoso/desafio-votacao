@@ -1,5 +1,6 @@
 package br.com.dbserver.desafio.pauta;
 
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,7 @@ public class PautaResource implements PautaResourceDocs{
     }
 
     @Override
-    public ResponseEntity<PautaDTO> create(PautaDTO pauta) {
+    public ResponseEntity<PautaDTO> create(@Valid PautaDTO pauta) {
         return ResponseEntity.status(HttpStatus.CREATED).body(this.service.create(pauta));
     }
 
