@@ -4,13 +4,14 @@ import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.MapPropertySource;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.lifecycle.Startables;
 
 import java.util.Map;
 import java.util.stream.Stream;
-
+@ActiveProfiles("test")
 @ContextConfiguration(initializers = AbstractIntegrationTest.Initializer.class)
 public class AbstractIntegrationTest {
 
@@ -22,9 +23,9 @@ public class AbstractIntegrationTest {
         public void initialize(ConfigurableApplicationContext applicationContext) {
             startContainers();
             ConfigurableEnvironment environment = applicationContext.getEnvironment();
-            MapPropertySource testContainers = new MapPropertySource("testContainers",
+            MapPropertySource testcontainers = new MapPropertySource("testcontainers",
                     createConnectionConfiguration());
-            environment.getPropertySources().addFirst(testContainers);
+            environment.getPropertySources().addFirst(testcontainers);
         }
 
         private Map<String, Object> createConnectionConfiguration() {

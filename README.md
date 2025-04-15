@@ -1,5 +1,10 @@
 # Sistema de Votação de Pautas
 
+## Funcionalidades
+1. Cadastro de uma nova paura
+2. Abertura de sessão para uma pauta cadastrada
+3. Votação em uma pauta com sessão aberta
+
 ## Pré-requisitos
  - Java 21
  - Maven 3.9.5
@@ -16,7 +21,16 @@ A aplicação será acessível via:
 - PostgreSQL: `localhost:5432`
 
 ## Rodando localmente
-
+1. Suba um banco de PostgreSQL dom docker
+```bash
+docker run --name votacao-db -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=votacaodb -p 5432:5432 -d postgres
+``` 
+2. Faça o clone do projeto em: 
+   https://github.com/JadersonCardoso/desafio-votacao.git 
+3. Dentro da pasta do Compile e Execute
+```bash
+mvn spring-boot:run
+``` 
 ## Decisões de Projeto e Tecnologias Utilizadas
 
 ### Arquitetura
@@ -29,6 +43,7 @@ A aplicação foi desenvolvida utilizando **DDD(Domain-Driven Design)** com foco
 - **Feign Client**: para abstratção da integração baseadas em REST.
 - **Rest-Assured**: para testes de integração baseados em REST.
 - **Testcontainers**: utilizado em testes para simular o ambiente real com banco PostgreSQL em containers.
+- **JaCoCo**: análise de cobertura de testes
 
 ### Outras Escolhas
 - Uso de `docker-compose` para facilitar a execução do ambiente de testes com persistência real em PostgreSQL.

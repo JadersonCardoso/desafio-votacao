@@ -1,6 +1,7 @@
 package br.com.dbserver.desafio.voto;
 
 import br.com.dbserver.desafio.payloads.ResponseApi;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,7 @@ public class VotoResource implements VotoResourceDocs {
         this.votoService = votoService;
     }
     @Override
-    public ResponseEntity<?> votar(VotoRequestDTO request) {
+    public ResponseEntity<?> votar(@Valid VotoRequestDTO request) {
         this.votoService.inserirVoto(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseApi(true,"Voto realizado com sucesso."));
     }

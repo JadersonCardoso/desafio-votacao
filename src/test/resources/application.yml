@@ -2,11 +2,15 @@ server:
   port: 8888
 spring:
   datasource:
+    url: jdbc:postgresql://localhost:5432/votacaodb
+    username: postgres
+    password: postgres
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: none
-    show-sql: false
+    show-sql: true
+
 logging:
   level:
     root: info
@@ -14,3 +18,7 @@ spring-doc:
   paths-to-match: /api/v1/**
   swagger-ui:
     use-root-path: true
+
+cpf:
+  validador:
+    url: http://localhost:8080

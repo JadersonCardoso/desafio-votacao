@@ -23,6 +23,7 @@ import java.util.List;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class SessaoResourceTest {
@@ -45,7 +46,7 @@ class SessaoResourceTest {
 
     @Test
     @Order(1)
-    @DisplayName("Debeba abrir um sessao com sucesso")
+    @DisplayName("Deve abrir um sessao com sucesso")
     void abrirSessaoTest() throws Exception {
         specification = new RequestSpecBuilder()
                 .setBasePath("/api/v1/sessoes/abertura")
