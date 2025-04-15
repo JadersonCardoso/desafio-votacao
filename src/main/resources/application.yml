@@ -25,5 +25,9 @@ spring-doc:
   paths-to-match: /api/v1/**
   swagger-ui:
     use-root-path: true
+
+cpf:
+  validador:
+    url: http://localhost:8080
 server:
   port: 9090
