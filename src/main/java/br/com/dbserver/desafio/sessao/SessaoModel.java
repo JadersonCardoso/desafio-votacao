@@ -22,7 +22,7 @@ public class SessaoModel {
     private Instant inicio;
     private Instant fim;
     @OneToOne
-    @JoinColumn(name = "pauta_id")
+    @JoinColumn(name = "pauta_id", nullable = false)
     private PautaModel pauta;
     @Column(name = "data_abertura")
     private LocalDateTime dataAbertura;

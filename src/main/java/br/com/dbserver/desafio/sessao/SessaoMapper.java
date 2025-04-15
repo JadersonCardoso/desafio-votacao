@@ -15,6 +15,7 @@ public interface SessaoMapper {
     @Mapping(source = "pauta", target = "pauta")
     SessaoDTO toDTO(SessaoModel sessaoModel);
     @Mapping(source = "pauta", target = "pauta")
+    @Mapping(target = "dataAbertura", ignore = true)
     SessaoModel toEntity(SessaoDTO sessaoDTO);
     @Mapping(source = "pauta", target = "pauta")
     default Page<SessaoDTO> toPageDTO(Page<SessaoModel> sessoes) {

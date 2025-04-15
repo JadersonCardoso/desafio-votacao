@@ -1,5 +1,6 @@
 package br.com.dbserver.desafio.exception.handler;
 
+import br.com.dbserver.desafio.exception.BusinessException;
 import br.com.dbserver.desafio.exception.ExceptionResponse;
 import br.com.dbserver.desafio.exception.FileNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -33,4 +34,12 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(BusinessException.class)
+    public final ResponseEntity<ExceptionResponse> handleBusinessException(Exception ex, WebRequest request) {
+        ExceptionResponse response = new ExceptionResponse(
+                LocalDateTime.now(),
+                ex.getMessage(),
+                request.getDescription(false));
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
 }
