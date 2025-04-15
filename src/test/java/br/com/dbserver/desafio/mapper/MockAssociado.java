@@ -17,14 +17,6 @@ public class MockAssociado {
         return associados;
     }
 
-    public List<AssociadoDTO> mockDtoList() {
-        List<AssociadoDTO> associados = new ArrayList<>();
-        for (int i = 0; i < 14; i++ ) {
-            associados.add(mockDTO());
-        }
-        return associados;
-    }
-
     public AssociadoModel mockEntity() {
         AssociadoModel model = new AssociadoModel();
         model.setId(UUID.fromString("0594e80e-bd42-439f-8a50-482cfee1f696"));

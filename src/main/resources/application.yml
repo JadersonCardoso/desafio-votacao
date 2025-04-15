@@ -29,5 +29,3 @@ spring-doc:
 cpf:
   validador:
     url: http://localhost:8080
-server:
-  port: 9090
