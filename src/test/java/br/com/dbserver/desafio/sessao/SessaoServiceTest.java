@@ -5,6 +5,7 @@ import br.com.dbserver.desafio.mapper.MockSessao;
 import br.com.dbserver.desafio.pauta.PautaRepository;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.function.Executable;
 import org.mapstruct.factory.Mappers;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -64,9 +65,10 @@ class SessaoServiceTest {
     @Order(2)
     @DisplayName("Deve retornar erro ao tentar anbrir uma sessao.")
     void executarAberturaSessaoNotFoundExceptionTest () {
-        Exception exception = assertThrows(FileNotFoundException.class, () -> {
-            this.sessaoService.executarAberturaSessao(UUID.randomUUID(), null);
-        });
+
+        Executable chamada = () ->  this.sessaoService.executarAberturaSessao(UUID.randomUUID(), null);
+        Exception exception = assertThrows(FileNotFoundException.class, chamada);
+
         String mensagemEsperada = "Nâo existe Pauta com o ID informado";
         String mensagemAtual = exception.getMessage();
 
