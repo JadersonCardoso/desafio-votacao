@@ -15,7 +15,7 @@ public class VotoResource implements VotoResourceDocs{
         this.votoService = votoService;
     }
     @Override
-    public ResponseEntity<?> votar(VotoRequest request) {
+    public ResponseEntity<?> votar(VotoRequestDTO request) {
         this.votoService.inserirVoto(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseApi(true,"Voto realizado com sucesso."));
     }

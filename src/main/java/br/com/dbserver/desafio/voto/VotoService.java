@@ -24,13 +24,13 @@ public class VotoService {
         this.sessaoRepository = sessaoRepository;
     }
 
-    public void inserirVoto(VotoRequest voto) {
+    public void inserirVoto(VotoRequestDTO voto) {
         log.info("verificando se existe a pauta infomada.");
         PautaModel pauta = this.pautaRepository.findById(voto.pautaId())
                 .orElseThrow(() -> new FileNotFoundException("Não foi encontrada pauta com o ID informado."));
 
         log.info("Verificando se já existe voto do associado informado.");
-        if (this.votoRepository.existsByPautaIdAndAndAssociadoId(voto.pautaId(), voto.associadoId())) {
+        if (this.votoRepository.existsByPautaIdAndAssociadoId(voto.pautaId(), voto.associadoId())) {
             throw new BusinessException("Já existe voto do associado pata esta pauta.");
         }
         log.info("Verificando se existe sessão aberta para a pauta informada");
@@ -50,6 +50,5 @@ public class VotoService {
 
         log.info("Salvando voto do associado..");
         this.votoRepository.save(votoModel);
-
     }
 }

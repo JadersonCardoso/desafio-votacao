@@ -24,5 +24,5 @@ public interface VotoResourceDocs {
                     @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
                     @ApiResponse(description = "Internal Server Error", responseCode = "500", content = @Content)
     })
-    ResponseEntity<?> votar(@RequestBody VotoRequest request);
+    ResponseEntity<?> votar(@RequestBody VotoRequestDTO request);
 }

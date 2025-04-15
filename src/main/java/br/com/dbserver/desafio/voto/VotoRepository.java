@@ -6,6 +6,6 @@ import java.util.UUID;
 
 public interface VotoRepository extends JpaRepository<VotoModel, UUID> {
 
-    boolean existsByPautaIdAndAndAssociadoId(UUID pautaId, UUID associadoID);
+    boolean existsByPautaIdAndAssociadoId(UUID pautaId, UUID associadoID);
 
 }
