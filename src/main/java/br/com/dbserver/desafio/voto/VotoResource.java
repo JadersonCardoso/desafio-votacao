@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/votos")
-public class VotoResource implements VotoResourceDocs{
+public class VotoResource implements VotoResourceDocs {
 
     private final VotoService votoService;
     public VotoResource(VotoService votoService) {

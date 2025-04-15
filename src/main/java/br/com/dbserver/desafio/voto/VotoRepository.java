@@ -7,5 +7,6 @@ import java.util.UUID;
 public interface VotoRepository extends JpaRepository<VotoModel, UUID> {
 
     boolean existsByPautaIdAndAssociadoId(UUID pautaId, UUID associadoID);
+    long countByPautaIdAndValor(UUID pautaId, VotoValor valor);
 
 }
