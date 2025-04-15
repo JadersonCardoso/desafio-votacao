@@ -1,8 +1,9 @@
+
 spring:
   application:
     name: desafio-votacao
   datasource:
-    url: jdbc:postgresql://172.20.217.157:5432/votacaodb
+    url: jdbc:postgresql://localhost:5432/votacaodb
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
@@ -24,3 +25,5 @@ spring-doc:
   paths-to-match: /api/v1/**
   swagger-ui:
     use-root-path: true
+server:
+  port: 9090
