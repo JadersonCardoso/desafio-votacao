@@ -15,5 +15,6 @@ public class PautaModel {
     @Column(name = "pauta_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+    @Column(nullable = false)
     private String titulo;
 }
